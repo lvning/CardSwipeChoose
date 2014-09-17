@@ -2,6 +2,7 @@ package com.yiqivr.cardswipechoose;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 
 import com.yiqivr.cardswipechoose.widget.CardLayout;
@@ -14,29 +15,25 @@ public class MainActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-
-		final CircleProgress cp = (CircleProgress) findViewById(R.id.progress);
-		final CircleProgress cp1 = (CircleProgress) findViewById(R.id.progress1);
 		CardLayout cl = (CardLayout) findViewById(R.id.cardlayout);
 		cl.setCardSwipeListener(new CardSwipeListener() {
-
+			
 			@Override
-			public void unlike(int percent) {
-				cp1.setCurProgress(percent);
-
+			public void unlike() {
+				Log.e("", "setCardSwipeListener unlike");
+				
 			}
-
+			
 			@Override
-			public void like(int percent) {
-				cp.setCurProgress(percent);
-
+			public void like() {
+				Log.e("", "setCardSwipeListener like");
+				
 			}
-
+			
 			@Override
 			public void cancel() {
-				cp.setCurProgress(0);
-				cp1.setCurProgress(0);
-
+				Log.e("", "setCardSwipeListener cancel");
+				
 			}
 		});
 	}

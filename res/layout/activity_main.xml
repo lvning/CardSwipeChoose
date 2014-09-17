@@ -8,29 +8,12 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:gravity="center_horizontal"
+    android:gravity="center"
     tools:context=".MainActivity" >
-
-    <com.yiqivr.cardswipechoose.widget.CircleProgress
-        android:id="@+id/progress"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        lv:backColor="@android:color/black"
-        lv:centerPic="@drawable/recommend_app_icon"
-        lv:foreColor="@color/green" />
 
     <com.yiqivr.cardswipechoose.widget.CardLayout
         android:id="@+id/cardlayout"
-        android:layout_width="300dp"
-        android:layout_height="300dp"
-        android:background="#263822" />
-
-    <com.yiqivr.cardswipechoose.widget.CircleProgress
-        android:id="@+id/progress1"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        lv:backColor="@android:color/black"
-        lv:centerPic="@drawable/recommend_app_icon"
-        lv:foreColor="@color/red" />
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 
 </LinearLayout>

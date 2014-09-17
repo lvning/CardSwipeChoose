@@ -89,6 +89,10 @@ public class CircleProgress extends View {
 		this.mSubCurProgress = progress;
 		invalidate();
 	}
+	
+	public int getCurProgress(){
+		return mSubCurProgress;
+	}
 
 	private class CircleAttribute {
 		public boolean mBRoundPaintsFill = true;
