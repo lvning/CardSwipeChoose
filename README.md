@@ -2,7 +2,11 @@ CardSwipeChoose
 ===============
 Swipe up or down to choose a card.
 
+![image](https://github.com/lvning/CardSwipeChoose/blob/master/cardswipechoose.gif)
+
 How to use:
+
+'''java
 CardLayout cl = (CardLayout) findViewById(R.id.cardlayout);
 		cl.setCardSwipeListener(new CardSwipeListener() {
 			
@@ -21,3 +25,4 @@ CardLayout cl = (CardLayout) findViewById(R.id.cardlayout);
 				Log.e("", "setCardSwipeListener cancel");
 			}
 		});
+'''
