@@ -12,7 +12,6 @@ import android.view.VelocityTracker;
 import android.view.View;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.BounceInterpolator;
-import android.view.animation.OvershootInterpolator;
 import android.widget.LinearLayout;
 
 import com.yiqivr.cardswipechoose.R;
@@ -32,8 +31,10 @@ public class CardLayout extends LinearLayout {
 	private float mPosX, mPosY;
 	private int layoutHeight;
 	// 触发距离
-	private float triggerDis, cardMoveDis;
-	private static final float MOVE_SLOP = 2.3f;
+	private float triggerDis;
+	// 卡片移动距离
+	private float cardMoveDis;
+	private static final float MOVE_SLOP = 3.2f;
 
 	private CardSwipeListener swipeListener;
 
@@ -48,7 +49,6 @@ public class CardLayout extends LinearLayout {
 	private AccelerateInterpolator accelerateInter;
 	private static final long CIRLE_FADE_DUR = 500l;
 	private static final long CARD_TRANS_DUR = 650l;
-	private static final long CARD_OUT_DUR = 350l;
 	private boolean topCircleShow = false;
 	private boolean bottomCircleShow = false;
 
@@ -75,7 +75,6 @@ public class CardLayout extends LinearLayout {
 			public void run() {
 				layoutHeight = getHeight();
 				triggerDis = layoutHeight / 3.f;
-				Log.e(TAG, "layoutHeight = " + layoutHeight + ", triggerDis = " + triggerDis);
 			}
 		});
 	}
@@ -137,7 +136,7 @@ public class CardLayout extends LinearLayout {
 			float xVelocity = vTracker.getXVelocity();
 			float yVeloctiy = vTracker.getYVelocity();
 //			Log.d("", "---- xVelocity: " + xVelocity);
-//			Log.d("", "---- yVeloctiy: " + yVeloctiy);
+			Log.d("", "---- yVeloctiy: " + yVeloctiy);
 
 			float mx = MotionEventCompat.getX(event, pointerId);
 			float my = MotionEventCompat.getY(event, pointerId);
@@ -216,14 +215,14 @@ public class CardLayout extends LinearLayout {
 				bottomCircle.setCurProgress(0);
 			}
 
-//			Log.e("", "---- total distance mPosY = : " + mPosY);
+			Log.e("", "---- total distance mPosY = : " + mPosY);
 //			Log.e("", "---- total distance mPosX = : " + mPosX);
 
 			break;
 
 		case MotionEvent.ACTION_UP:
 		case MotionEvent.ACTION_CANCEL:
-			if (curState == State.SWIPINGDOWN || curState == State.SWIPINGUP) {
+			if (curState != State.NONE) {
 				animate().setInterpolator(bounceInter).setDuration(CARD_TRANS_DUR).translationYBy(-cardMoveDis)
 						.setListener(new AnimatorListener() {
 
@@ -239,7 +238,11 @@ public class CardLayout extends LinearLayout {
 
 							@Override
 							public void onAnimationEnd(Animator arg0) {
-								vTracker.recycle();
+								try {
+									vTracker.recycle();
+								} catch (Exception e) {
+									e.printStackTrace();
+								}
 								cardMoveDis = 0;
 								mPosX = 0;
 								mPosY = 0;

@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
+import android.widget.Toast;
 
 import com.yiqivr.cardswipechoose.widget.CardLayout;
 import com.yiqivr.cardswipechoose.widget.CardLayout.CardSwipeListener;
@@ -20,20 +21,17 @@ public class MainActivity extends Activity {
 			
 			@Override
 			public void unlike() {
-				Log.e("", "setCardSwipeListener unlike");
-				
+				Toast.makeText(MainActivity.this, "unlike", Toast.LENGTH_SHORT).show();
 			}
 			
 			@Override
 			public void like() {
-				Log.e("", "setCardSwipeListener like");
-				
+				Toast.makeText(MainActivity.this, "like", Toast.LENGTH_SHORT).show();
 			}
 			
 			@Override
 			public void cancel() {
 				Log.e("", "setCardSwipeListener cancel");
-				
 			}
 		});
 	}
